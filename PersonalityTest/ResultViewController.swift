@@ -48,7 +48,7 @@ class ResultViewController: UIViewController {
         resultDescriptionLabel.text = personalityInfo.description
         
         
-        switch personalityInfo.catogory {
+        switch personalityInfo.category {
         case .Analysts:
             dialogView.backgroundColor = colors[0]
         case .Diplomats:
