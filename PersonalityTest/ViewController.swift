@@ -224,7 +224,7 @@ class ViewController: UIViewController, ResultViewControllerProtocol {
             default: break
             }
             
-            // 傳 Personalities struct陣列 的 【Personality Struct 物件】給 resultVC
+            // 把【Personality Struct 物件】和其 index 傳給 resultVC 的屬性們
             resultVC?.personalityInfo = personalities[index]
             resultVC?.personalityIndex = index
     
@@ -235,10 +235,10 @@ class ViewController: UIViewController, ResultViewControllerProtocol {
             // 還有題目
             
             if sender.tag == 0 {
-                // 點到上面的按鈕，對應選項的score+1
+                // 點到上面的按鈕，對應選項的score + 1
                 questions[currentQuestionIndex - 1].choices[0].score += 1
             } else {
-                // 點到下面的按鈕，對應選項的score+1
+                // 點到下面的按鈕，對應選項的score + 1
                 questions[currentQuestionIndex - 1].choices[1].score += 1
             }
             
