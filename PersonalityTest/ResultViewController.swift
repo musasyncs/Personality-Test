@@ -41,8 +41,8 @@ class ResultViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // 元件被載入後，用「帶有前一頁資料的屬性」更新元件
-        resultImageView.image = UIImage(imageLiteralResourceName: "\(personalityIndex) \(personalityInfo.type)")
+        
+        resultImageView.image = UIImage(named: "\(personalityIndex) \(personalityInfo.type)")
         resultNameLabel.text = personalityInfo.name
         resultTypeLabel.text = personalityInfo.type
         resultDescriptionLabel.text = personalityInfo.description
