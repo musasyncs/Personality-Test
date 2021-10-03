@@ -12,13 +12,11 @@ protocol ResultViewControllerProtocol {
 }
 
 class ResultViewController: UIViewController {
+    var personalityInfo: Personality!
+    var personalityIndex = 0
     
-    @IBOutlet weak var dialogView: UIView!
-    @IBOutlet weak var resultImageView: UIImageView!
-    @IBOutlet weak var resultNameLabel: UILabel!
-    @IBOutlet weak var resultTypeLabel: UILabel!
-    @IBOutlet weak var resultDescriptionLabel: UILabel!
-
+    var delegate: ResultViewControllerProtocol?
+    
     let colors: [UIColor] = [
         UIColor.init(red: 231/255, green: 216/255, blue: 224/255, alpha: 1),
         UIColor.init(red: 219/255, green: 237/255, blue: 229/255, alpha: 1),
@@ -26,27 +24,22 @@ class ResultViewController: UIViewController {
         UIColor.init(red: 247/255, green: 232/255, blue: 203/255, alpha: 1),
     ]
     
-    // ResultViewController 的屬性
-    var personalityInfo: Personality!
-    var personalityIndex = 0
+    @IBOutlet weak var dialogView: UIView!
+    @IBOutlet weak var resultImageView: UIImageView!
+    @IBOutlet weak var resultNameLabel: UILabel!
+    @IBOutlet weak var resultTypeLabel: UILabel!
+    @IBOutlet weak var resultDescriptionLabel: UILabel!
 
-    //宣告 ResultViewController 的 delegate（將是 view controller）
-    var delegate: ResultViewControllerProtocol?
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         dialogView.layer.cornerRadius = 10
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        resultImageView.image = UIImage(named: "\(personalityIndex) \(personalityInfo.type)")
-        resultNameLabel.text = personalityInfo.name
-        resultTypeLabel.text = personalityInfo.type
-        resultDescriptionLabel.text = personalityInfo.description
-        
+        resultImageView.image          = UIImage(named: "\(personalityIndex) \(personalityInfo.type)")
+        resultNameLabel.text           = personalityInfo.name
+        resultTypeLabel.text           = personalityInfo.type
+        resultDescriptionLabel.text    = personalityInfo.description
         
         switch personalityInfo.category {
         case .Analysts:
@@ -60,10 +53,9 @@ class ResultViewController: UIViewController {
         }
     }
     
+    //在總結對話窗按 "Test Again" 後，要回到第一題
     @IBAction func restartAction(_ sender: Any) {
-        
         dismiss(animated: true, completion: nil)
-        
         delegate?.dialogDismissed()
     }
     

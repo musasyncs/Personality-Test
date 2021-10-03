@@ -13,7 +13,6 @@ struct Personality {
     let type: String
     let description: String
 }
-
 enum category {
     case Analysts
     case Diplomats

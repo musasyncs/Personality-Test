@@ -10,7 +10,6 @@ import Foundation
 struct Question {
     var choices: [Choice]
 }
-
 struct Choice {
     let content: String
     var score: Int
